@@ -1,0 +1,40 @@
+services:
+
+  frontend:
+    build:
+      context: frontend/.
+    ports:
+      - ${WEB_PORT}:3000
+    working_dir: /frontend
+    volumes:
+      - ./frontend/:/frontend:delegated # improve speed for hot reloading
+    command: ["npm", "run", "dev"]
+    depends_on:
+      - backend
+    restart: always
+
+  backend:
+    build:
+      context: .
+      args:
+        ENV_TYPE: ${APP_ENV}
+    volumes:
+      - .:/backend
+    ports:
+      - ${API_PORT}:5000
+    depends_on:
+      - pgsql_db
+    restart: always
+
+  pgsql_db:
+    container_name: pgsql_db
+    image: postgres:17
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - ./DB_DATA:/var/lib/postgresql/data
+    ports:
+      - ${POSTGRES_PORT}:5432
+    restart: always

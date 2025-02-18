@@ -1,0 +1,8 @@
+asyncpg==0.30.0
+alembic==1.9.2
+SQLAlchemy==2.0.38
+SQLAlchemy-Utils==0.41.2
+uvicorn==0.34.0
+fastapi==0.115.8
+email-validator==2.2.0
+psycopg2==2.9.10
