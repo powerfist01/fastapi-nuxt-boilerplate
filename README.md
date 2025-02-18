@@ -40,7 +40,7 @@ docker-compose -f docker-compose.dev.yml up --build
 
 ## Database Migrations
 
-To create and apply migrations:
+To create and apply migrations inside the backend container:
 ```sh
 alembic upgrade head
 ```
