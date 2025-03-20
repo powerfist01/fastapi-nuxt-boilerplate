@@ -7,6 +7,10 @@ from database import get_db
 
 router = APIRouter()
 
+@router.get("/")
+async def home():
+    return {"message": "Hello World"}
+
 @router.get("/users", response_model=list[UserSchema])
 async def get_users(db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(User))

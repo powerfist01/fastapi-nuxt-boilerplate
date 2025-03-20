@@ -1,0 +1,11 @@
+FROM node:22-slim
+
+# Set working directory
+WORKDIR /frontend
+
+# Install dependencies first (leverages Docker cache)
+COPY package*.json ./
+RUN npm install
+
+# Expose development server port
+EXPOSE 3000

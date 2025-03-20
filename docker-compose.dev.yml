@@ -3,6 +3,7 @@ services:
   frontend:
     build:
       context: frontend/.
+      dockerfile: Dockerfile.dev
     ports:
       - ${WEB_PORT}:3000
     working_dir: /frontend
